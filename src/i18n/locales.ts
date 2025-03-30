@@ -30,7 +30,7 @@ const locales: Translations = {
     greeting: "Olá, meu nome é Daniel, seja bem vindo ao meu portfólio!",
     contact: "Fale Comigo",
     projects: "Ver Projetos",
-    resume: "Currículo",
+    resume: "Ver Currículo",
     skills: "Habilidades & Tecnologias",
     language: "Linguagens",
     about_me: "Sobre Mim",

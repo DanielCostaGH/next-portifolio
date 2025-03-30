@@ -24,16 +24,11 @@ import {
   Github,
   Linkedin,
   Mail,
-  ExternalLink,
-  Code2,
+  Phone,
   Brain,
-  Briefcase,
   User,
-  Send,
 } from "lucide-react";
 import { Button } from "@/src/components/ui/button";
-import { Input } from "@/src/components/ui/input";
-import { Textarea } from "@/src/components/ui/textarea";
 import { Card } from "@/src/components/ui/card";
 import intl from "react-intl-universal";
 import locales from "@/src/i18n/locales";
@@ -43,7 +38,6 @@ import ExperienceTimeline from "@/src/components/ui/ExperienceTimeline";
 export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
   const resumeRef = useRef<HTMLElement | null>(null);
-  const contactRef = useRef<HTMLElement | null>(null);
   const [initDone, setInitDone] = useState(false);
   const scrollToSection = (ref: React.RefObject<HTMLElement>) => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
@@ -54,7 +48,7 @@ export default function Home() {
   };
   const skills = [
     {
-      category: "Languages",  
+      category: "Languages",
       items: [
         { name: "PHP", icon: <SiPhp className="text-xl" /> },
         { name: "TypeScript", icon: <SiTypescript className="text-xl" /> },
@@ -88,24 +82,6 @@ export default function Home() {
         { name: "Forge", icon: <FaCloudUploadAlt className="text-xl" /> },
         { name: "Digital Ocean", icon: <SiDigitalocean className="text-xl" /> },
       ],
-    },
-  ];
-
-  const projects = [
-    {
-      title: "E-commerce Platform",
-      description:
-        "Full-stack e-commerce solution with real-time inventory management",
-      tech: ["Next.js", "Node.js", "PostgreSQL"],
-      image:
-        "https://images.unsplash.com/photo-1557821552-17105176677c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-    },
-    {
-      title: "Task Management System",
-      description: "Collaborative task management tool with real-time updates",
-      tech: ["React", "Firebase", "Material-UI"],
-      image:
-        "https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
     },
   ];
 
@@ -170,19 +146,12 @@ export default function Home() {
             >
               {intl.formatMessage({ id: "resume" })}
             </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={() => scrollToSection(contactRef)}
-            >
-              {intl.formatMessage({ id: "contact" })}
-            </Button>
           </div>
         </motion.div>
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-muted/50">
+      <section id="about" className="py-20 bg-muted/70">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -191,20 +160,65 @@ export default function Home() {
           className="container mx-auto px-4"
         >
           <div className="flex flex-col md:flex-row items-center gap-12">
-            <div className="flex-1">
+            <div className="">
               <h2 className="text-3xl font-bold mb-6 flex items-center gap-2">
-                <User className="h-6 w-6" /> {intl.formatMessage({id: "about_me"})}
+                <User className="h-10 w-10" />{" "}
+                {intl.formatMessage({ id: "about_me" })}
               </h2>
-              <p className="text-lg text-muted-foreground mb-4">
-                {intl.formatMessage({id: "about"})}
+              <p className="text-lg text-muted-foreground mb-4 text-justify">
+                {intl.formatMessage({ id: "about" })}
               </p>
             </div>
-            <div className="flex-1">
-              <img
-                src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                alt="Workspace"
-                className="rounded-lg shadow-xl"
-              />
+
+            {/* Social Media */}
+
+            <div className="flex flex-wrap gap-10 justify-center  min-w-[320px] md:min-w-[500px]">
+              {/* LinkedIn */}
+              <a
+                href="https://www.linkedin.com/in/daniel-costa-7058a2158/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-transform duration-300 ease-in-out hover:scale-110 hover:shadow-xl hover:rounded-full"
+              >
+                <Button variant="outline" className="h-36 w-36 rounded-full p-2">
+                  <Linkedin className="h-20 w-20" />
+                </Button>
+              </a>
+
+              {/* GitHub */}
+              <a
+                href="https://github.com/DanielCostaGH"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-transform duration-300 ease-in-out hover:scale-110 hover:shadow-xl hover:rounded-full"
+              >
+                <Button variant="outline" className="h-36 w-36 rounded-full">
+                  <Github className="h-20 w-20" />
+                </Button>
+              </a>
+
+              {/* Email */}
+              <a
+                href="https://mail.google.com/mail/?view=cm&to=dfscs.costa@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-transform duration-300 ease-in-out hover:scale-110 hover:shadow-xl hover:rounded-full"
+              >
+                <Button variant="outline" className="h-36 w-36 rounded-full">
+                  <Mail className="h-20 w-20" />
+                </Button>
+              </a>
+
+              <a
+                href="https://wa.me/5531980160125"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-transform duration-300 ease-in-out hover:scale-110 hover:shadow-xl hover:rounded-full"
+              >
+                <Button variant="outline" className="h-36 w-36 rounded-full">
+                  <Phone className="h-20 w-20" />
+                </Button>
+              </a>
             </div>
           </div>
         </motion.div>
@@ -220,7 +234,7 @@ export default function Home() {
           className="container mx-auto px-4"
         >
           <h2 className="text-3xl font-bold mb-12 flex items-center gap-2">
-            <Brain className="h-6 w-6" /> {intl.formatMessage({id: "skills"})}
+            <Brain className="h-6 w-6" /> {intl.formatMessage({ id: "skills" })}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {skills.map((skillGroup, index) => (
@@ -245,51 +259,6 @@ export default function Home() {
       {/* experience Section */}
       <section id="experience" ref={resumeRef}>
         <ExperienceTimeline />
-      </section>
- 
-      {/* Contact Section */}
-      <section id="contact" ref={contactRef} className="py-20">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeIn}
-          className="container mx-auto px-4"
-        >
-          <div className="max-w-2xl mx-auto">
-            <h2 className="text-3xl font-bold mb-12 flex items-center gap-2">
-              <Mail className="h-6 w-6" /> Get in Touch
-            </h2>
-            <form className="space-y-6">
-              <div>
-                <Input placeholder="Your Name" />
-              </div>
-              <div>
-                <Input type="email" placeholder="Your Email" />
-              </div>
-              <div>
-                <Textarea
-                  placeholder="Your Message"
-                  className="min-h-[150px]"
-                />
-              </div>
-              <Button className="w-full">
-                Send Message <Send className="ml-2 h-4 w-4" />
-              </Button>
-            </form>
-            <div className="mt-12 flex justify-center gap-6">
-              <Button variant="outline" size="icon">
-                <Github className="h-5 w-5" />
-              </Button>
-              <Button variant="outline" size="icon">
-                <Linkedin className="h-5 w-5" />
-              </Button>
-              <Button variant="outline" size="icon">
-                <Mail className="h-5 w-5" />
-              </Button>
-            </div>
-          </div>
-        </motion.div>
       </section>
     </div>
   );

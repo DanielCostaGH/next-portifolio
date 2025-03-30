@@ -30,7 +30,7 @@ const experiences = [
 
 export default function ExperienceTimeline() {
   return (
-    <section className="py-20 bg-muted/50">
+    <section className="py-20 bg-muted/70">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold mb-12 flex items-center gap-2">
           <Briefcase className="h-6 w-6" />
